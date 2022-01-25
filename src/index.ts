@@ -31,11 +31,31 @@ const stops: [google.maps.LatLngLiteral, string][] = [
 ];
 
 function initMap(): void {
+
+
+
+  
   const cpa = { lat: 45.538155, lng: -73.61137 };
-  map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-    center: cpa,
+
+
+  var myStyles =[
+    {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [
+              { visibility: "off" }
+        ]
+    }
+];
+
+var myOptions = {
     zoom: 15,
-  });
+    center: cpa,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: myStyles 
+};
+
+  map = new google.maps.Map(document.getElementById('map') as HTMLElement, myOptions);
 
   // Create an info window to share between markers.
   const infoWindow = new google.maps.InfoWindow();
@@ -49,6 +69,17 @@ function initMap(): void {
     scale: 2,
     anchor: new google.maps.Point(15, 30),
   };
+
+  const car = {
+    path: 'M21.434 7.689l-2.434 3.311h-5.684c.701 2 2.996 3.886 6.201 3.26.95-.064 4.155-.573 5.483-.26 1.768.424 1.031.426 4.201 2.97l15.799 13.03c.968.855 2.206.505 3.063-.461.857-.968.905-2.684-.063-3.539l-20-16c-1.252-1.005-1.568-2.397-2-4-.84-2.755-3.929-4.965-6.961-4.965-2.443 0-5.072 2.113-6.039 3.965h6l2.434 2.689zm13.72 24.311l-6.182-10.73c-.244-.445-.861-1.27-1.368-1.27h-17.208c-.507 0-1.124.825-1.369 1.27l-6.027 10.73h-.154c-1.015 0-1.846.369-1.846 1.385v9.23c0 1.016.831 1.385 1.846 1.385h2.154v3.23c0 1.524.938 2.77 2.461 2.77h.923c1.524 0 2.616-1.246 2.616-2.77v-3.23h16v3.23c0 1.523 1.092 2.77 2.615 2.77h.923c1.524 0 2.462-1.246 2.462-2.77v-3.23h2.154c1.015 0 1.846-.369 1.846-1.385v-9.23c0-1.016-.831-1.385-1.846-1.385zm-29.077 6.923c-1.275 0-2.308-1.033-2.308-2.308s1.033-2.308 2.308-2.308c1.274 0 2.308 1.033 2.308 2.308s-1.033 2.308-2.308 2.308zm1.846-6.923l3.741-7.828c.227-.454.829-1.172 1.336-1.172h12c.507 0 1.108.718 1.336 1.172l3.741 7.828h-22.154zm24 6.923c-1.274 0-2.308-1.033-2.308-2.308s1.033-2.308 2.308-2.308 2.308 1.033 2.308 2.308-1.034 2.308-2.308 2.308z',
+    fillColor: 'black',
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 0.7,
+    anchor: new google.maps.Point(0,0),
+  };
+
 
   new google.maps.Marker({
     position: cpa,
@@ -65,7 +96,7 @@ function initMap(): void {
       map,
       title: `${i + 1}. ${title}`,
       label: `${i + 1}`,
-      icon : svgMarker,
+      icon : car,
       optimized: false,
     });
 
