@@ -19,9 +19,17 @@ import './style.css';
 let map: google.maps.Map;
 
 function initMap(): void {
+  const cpa = { lat: 45.5381, lng: -73.61132 };
   map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-    center: { lat: 45.538, lng: -73.613 },
+    center: cpa,
     zoom: 15,
   });
+
+  new google.maps.Marker({
+    position: cpa,
+    map,
+    title: "CPA MONTREAL",
+  });
+
 }
 export { initMap };
