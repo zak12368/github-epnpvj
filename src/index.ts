@@ -52,7 +52,8 @@ var myOptions = {
     zoom: 15,
     center: cpa,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: myStyles 
+    styles: myStyles ,
+    clickableIcons: false
 };
 
   map = new google.maps.Map(document.getElementById('map') as HTMLElement, myOptions);
