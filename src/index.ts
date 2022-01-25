@@ -36,6 +36,7 @@ function initMap(): void {
 
   
   const cpa = { lat: 45.538155, lng: -73.61137 };
+  const red_car = { lat: 45.624286103575, lng: -73.55816162776232 };
 
 
   var myStyles =[
@@ -81,13 +82,14 @@ var myOptions = {
     anchor: new google.maps.Point(0,0),
   };
 
-
+  
   new google.maps.Marker({
     position: cpa,
     map,
     icon: svgMarker,
     title: 'CPA MONTREAL',
   });
+
 
 
   // Create the markers.
@@ -109,7 +111,13 @@ var myOptions = {
     });
   });
 
-
+  car.fillColor = "red";
+  new google.maps.Marker({
+    position: red_car,
+    map,
+    icon: car,
+    title: 'Garage à investiger',
+  });
 
 }
 export { initMap };
