@@ -31,33 +31,40 @@ const stops: [google.maps.LatLngLiteral, string][] = [
 ];
 
 function initMap(): void {
-
-
-
-  
   const cpa = { lat: 45.538155, lng: -73.61137 };
   const red_car = { lat: 45.624286103575, lng: -73.55816162776232 };
+  const TERRITOIRE = {
+    north: 45.749983,
+    south: 45.34,
+    west: -74.1,
+    east: -73.34,
+  };
 
-
-  var myStyles =[
+  var myStyles = [
     {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [
-              { visibility: "off" }
-        ]
-    }
-];
+      featureType: 'poi',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }],
+    },
+  ];
 
-var myOptions = {
-    zoom: 15,
+  var myOptions = {
+    minZoom: 11,
+    zoom: 11,
     center: cpa,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: myStyles ,
-    clickableIcons: false
-};
+    styles: myStyles,
+    clickableIcons: false,
+    restriction: {
+      latLngBounds: TERRITOIRE,
+      strictBounds: false,
+    },
+  };
 
-  map = new google.maps.Map(document.getElementById('map') as HTMLElement, myOptions);
+  map = new google.maps.Map(
+    document.getElementById('map') as HTMLElement,
+    myOptions
+  );
 
   // Create an info window to share between markers.
   const infoWindow = new google.maps.InfoWindow();
@@ -79,18 +86,15 @@ var myOptions = {
     strokeWeight: 0,
     rotation: 0,
     scale: 0.7,
-    anchor: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(0, 0),
   };
 
-  
   new google.maps.Marker({
     position: cpa,
     map,
     icon: svgMarker,
     title: 'CPA MONTREAL',
   });
-
-
 
   // Create the markers.
   stops.forEach(([position, title], i) => {
@@ -99,19 +103,19 @@ var myOptions = {
       map,
       title: `${i + 1}. ${title}`,
       label: `${i + 1}`,
-      icon : car,
+      icon: car,
       optimized: false,
     });
 
     // Add a click listener for each marker, and set up the info window.
-    marker.addListener("click", () => {
+    marker.addListener('click', () => {
       infoWindow.close();
       infoWindow.setContent(marker.getTitle());
       infoWindow.open(marker.getMap(), marker);
     });
   });
 
-  car.fillColor = "red";
+  car.fillColor = 'red';
   new google.maps.Marker({
     position: red_car,
     map,
@@ -119,5 +123,29 @@ var myOptions = {
     title: 'Garage à investiger',
   });
 
+  var polygonMask = new google.maps.Polygon({
+    map: map,
+    strokeColor: '#000000',
+    strokeOpacity: 0.5,
+    strokeWeight: 2,
+    fillColor: '#CACACA',
+    fillOpacity: 0.7,
+    paths: [
+      [
+        new google.maps.LatLng(44.980973, -74.626375),
+        new google.maps.LatLng(46.134841, -74.626375),
+        new google.maps.LatLng(46.134841, -72.83423),
+        new google.maps.LatLng(44.980973, -72.83423),
+        new google.maps.LatLng(44.980973, -74.626375),
+      ],
+      [
+        new google.maps.LatLng(45.484629, -73.789354),
+        new google.maps.LatLng(45.416228, -73.504396),
+        new google.maps.LatLng(45.589478, -73.590227),
+        new google.maps.LatLng(45.592361, -73.774248),
+        new google.maps.LatLng(45.484629, -73.789354),
+      ],
+    ],
+  });
 }
 export { initMap };
