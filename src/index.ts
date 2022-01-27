@@ -35,7 +35,7 @@ function initMap(): void {
   const red_car = { lat: 45.624286103575, lng: -73.55816162776232 };
   const TERRITOIRE = {
     north: 45.749983,
-    south: 45.34,
+    south: 45.28,
     west: -74.1,
     east: -73.34,
   };
@@ -124,28 +124,33 @@ function initMap(): void {
   });
 
   var polygonMask = new google.maps.Polygon({
-    map: map,
+    map:map,
     strokeColor: '#000000',
     strokeOpacity: 0.5,
     strokeWeight: 2,
     fillColor: '#CACACA',
     fillOpacity: 0.7,
-    paths: [
-      [
-        new google.maps.LatLng(44.980973, -74.626375),
-        new google.maps.LatLng(46.134841, -74.626375),
-        new google.maps.LatLng(46.134841, -72.83423),
-        new google.maps.LatLng(44.980973, -72.83423),
-        new google.maps.LatLng(44.980973, -74.626375),
-      ],
-      [
-        new google.maps.LatLng(45.484629, -73.789354),
-        new google.maps.LatLng(45.416228, -73.504396),
-        new google.maps.LatLng(45.589478, -73.590227),
-        new google.maps.LatLng(45.592361, -73.774248),
-        new google.maps.LatLng(45.484629, -73.789354),
-      ],
-    ],
-  });
+    paths: [[new google.maps.LatLng(44.980973, -74.626375),
+    new google.maps.LatLng(46.134841, -74.626375),
+    new google.maps.LatLng(46.134841, -72.834230),
+    new google.maps.LatLng(44.980973, -72.834230),
+    new google.maps.LatLng(44.980973, -74.626375)],
+    [new google.maps.LatLng(45.306227, -74.138857),
+    new google.maps.LatLng(45.292220, -73.799310),
+    new google.maps.LatLng(45.316971, -73.643013),
+    new google.maps.LatLng(45.339780, -73.527914),
+    new google.maps.LatLng(45.343280, -73.487659),
+    new google.maps.LatLng(45.407551, -73.340288),
+    new google.maps.LatLng(45.631987, -73.309045),
+    new google.maps.LatLng(45.710796, -73.309217),
+    new google.maps.LatLng(45.732967, -73.332735),
+    new google.maps.LatLng(45.737415, -73.394662),
+    new google.maps.LatLng(45.736112, -73.462082),
+    new google.maps.LatLng(45.714092, -73.548170),
+    new google.maps.LatLng(45.712234, -73.657175),
+    new google.maps.LatLng(45.656020, -73.784891),
+    new google.maps.LatLng(45.580528, -73.885141),
+    new google.maps.LatLng(45.428276, -74.187265),
+    new google.maps.LatLng(45.306227, -74.138857)]]});
 }
 export { initMap };
